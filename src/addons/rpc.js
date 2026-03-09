@@ -37,7 +37,7 @@ class DiscordRPC {
       largeImageText: `Gamma Client v${version}`,
       instance: false,
       buttons: [
-        { label: "Download", url: "https://github.com/crumpledflowers/Gamma-client" }, // Updated Download URL
+        { label: "Download", url: "https://github.com/quirixa/Gamma-client" }, // Updated Download URL
         { label: "Discord", url: "https://discord.gg/FefKyX7VrF" }, // Updated Discord URL
       ],
     };

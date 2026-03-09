@@ -3,7 +3,7 @@
 A light Electron client for Kirka.io. Join our [discord](https://discord.gg/FefKyX7VrF) for support and update notifications.
 
 # Download
-- [Releases](https://github.com/crumpledflowers/Gamma-client/releases)
+- [Releases](https://github.com/quirixa/Gamma-client/releases)
 
 Windows, Linux and MacOS releases are available.
 # What features does this have?

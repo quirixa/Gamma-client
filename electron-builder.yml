@@ -24,6 +24,6 @@ linux:
   artifactName: "${name}-${version}-linux-${arch}.${ext}"
 publish:
   - provider: github
-    owner: crumpledflowers
+    owner: quirixa
     repo: gamma-client
     releaseType: draft

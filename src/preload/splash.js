@@ -7,7 +7,7 @@ autoUpdater.autoDownload = true;
 
 autoUpdater.setFeedURL({
   provider: "github",
-  owner: "crumpledflowers", 
+  owner: "quirixa", 
   repo: "Gamma-client",      
 });
 
