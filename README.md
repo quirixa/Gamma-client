@@ -29,7 +29,6 @@ Windows, Linux and MacOS releases are available.
 - Pack/Chest Auto Opener
 - Shift Clicking a username in Global Chat will open their profile
 - Map Images in Server List
-- Unofficial News in Lobby
 - Market Names
 - Custom List Price
 - Import/Export/Reset Settings
