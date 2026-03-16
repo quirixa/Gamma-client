@@ -90,17 +90,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!btn || document.querySelector("#gamma-discord-btn")) return;
 
     const discordBtn = btn.cloneNode(true);
-    discordBtn.className =
-      "card-cont soc-group transfer-list-top-enter transfer-list-top-enter-active";
-    discordBtn.id = "gamma-discord-btn";
-    discordBtn.style = `
-    background: linear-gradient(to top, rgba(255,147,45,.75), rgba(172,250,112,.75)) !important;
-    border-bottom-color: #c47022 !important;
-    border-top-color: #c5ff99 !important;
-    border-right-color: #e48329 !important;`;
-    const textDivs = discordBtn.querySelector(".text-soc").children;
-    textDivs[0].innerText = "GAMMA";
-    textDivs[1].innerText = "DISCORD";
+discordBtn.className =
+  "card-cont soc-group transfer-list-top-enter transfer-list-top-enter-active";
+discordBtn.id = "gamma-discord-btn";
+
+discordBtn.style = `
+background: linear-gradient(to top, #0f3d1e, #1ed760, #a8ff60) !important;
+border-bottom-color: #0b2a14 !important;
+border-top-color: #b6ff7a !important;
+border-right-color: #16b44a !important;
+box-shadow: 0 0 12px rgba(80,255,120,.6) !important;
+`;
+
+const textDivs = discordBtn.querySelector(".text-soc").children;
+textDivs[0].innerText = "GAMMA";
+textDivs[1].innerText = "DISCORD";
 
     const i = document.createElement("i");
     i.className = "fab fa-discord";
