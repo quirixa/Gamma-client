@@ -1,78 +1,30 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
-const { autoUpdater } = require("electron-updater");
-const { initGame } = require("./game");
-const path = require("path");
+const { ipcRenderer } = require("electron");
+const version = require("../../package.json").version;
 
-autoUpdater.autoDownload = true;
+document.addEventListener("DOMContentLoaded", () => {
+  const versionElement = document.querySelector(".ver");
+  const statusElement = document.querySelector(".status");
 
-autoUpdater.setFeedURL({
-  provider: "github",
-  owner: "quirixa", 
-  repo: "Gamma-client",      
+  versionElement.textContent = `v${version}`;
+
+  const updateStatus = (status) => (statusElement.textContent = status);
+
+  ipcRenderer.send("check-for-updates");
+  updateStatus("Checking for updates...");
+
+  ipcRenderer.on("update-available", () =>
+    updateStatus("Update available! Downloading...")
+  );
+  ipcRenderer.on("update-not-available", () =>
+    updateStatus("No updates available. Launching...")
+  );
+
+  ipcRenderer.on("update-downloaded", () => {
+    updateStatus("Update downloaded! Installing...");
+    ipcRenderer.send("quit-and-install");
+  });
+
+  ipcRenderer.on("download-progress", (_, progress) =>
+    updateStatus(`Downloading update: ${Math.round(progress.percent)}%`)
+  );
 });
-
-let splashWindow;
-
-const createWindow = () => {
-  splashWindow = new BrowserWindow({
-    icon: path.join(__dirname, "../assets/img/icon.png"),
-    width: 600,
-    height: 300,
-    show: false,
-    frame: false,
-    transparent: true,
-    fullscreenable: false,
-    resizable: false,
-    webPreferences: {
-      preload: path.join(__dirname, "../preload/splash.js"),
-    },
-  });
-
-  splashWindow.loadFile(path.join(__dirname, "../assets/html/splash.html"));
-  splashWindow.once("ready-to-show", () => {
-    splashWindow.show();
-    app.isPackaged ? checkForUpdates() : handleClose();
-  });
-
-  splashWindow.on("closed", () => {
-    ipcMain.removeAllListeners("quit-and-install");
-    splashWindow = null;
-  });
-};
-
-ipcMain.on("quit-and-install", () =>
-  setTimeout(() => autoUpdater.quitAndInstall(), 5000)
-);
-
-const checkForUpdates = () => {
-  autoUpdater.on("update-available", () =>
-    splashWindow.webContents.send("update-available")
-  );
-  autoUpdater.on("update-not-available", () => {
-    splashWindow.webContents.send("update-not-available");
-    handleClose();
-  });
-  autoUpdater.on("update-downloaded", () =>
-    splashWindow.webContents.send("update-downloaded")
-  );
-  autoUpdater.on("download-progress", (progress) =>
-    splashWindow.webContents.send("download-progress", progress)
-  );
-  autoUpdater.on("error", ({ message }) => {
-    splashWindow.webContents.send("update-error", message);
-    handleClose();
-  });
-  autoUpdater.checkForUpdates().catch(handleClose);
-};
-
-const handleClose = () =>
-  setTimeout(() => {
-    if (splashWindow) {
-      initGame();
-      splashWindow.close();
-    }
-  }, 5000);
-
-const initSplash = createWindow;
-
-module.exports = { initSplash };

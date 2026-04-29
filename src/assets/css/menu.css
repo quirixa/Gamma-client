@@ -182,8 +182,8 @@
 
 .menu[data-theme="legacy"] {
     background: linear-gradient(to bottom,
-                rgba(var(--green), 0.8),
-                rgba(var(--orange), 0.8));
+            rgba(var(--green), 0.8),
+            rgba(var(--orange), 0.8));
     backdrop-filter: blur(5px);
     --dark: 255, 255, 255;
     --light: 255, 255, 255;
@@ -339,18 +339,18 @@
     align-items: center;
 }
 
-.menu .gamma.options { /* Corrected from .juice.options */
+.menu .juice.options {
     display: none;
     gap: 1rem;
     flex-direction: column;
     height: 100%;
 }
 
-.menu .gamma.options.active { /* Corrected from .juice.options.active */
+.menu .juice.options.active {
     display: flex;
 }
 
-.menu .gamma.tab { /* Corrected from .juice.tab */
+.menu .juice.tab {
     width: 100%;
     box-sizing: border-box;
     height: 3rem;
@@ -365,11 +365,11 @@
     border-radius: 0.5rem;
 }
 
-.menu .gamma.tab:hover { /* Corrected from .juice.tab:hover */
+.menu .juice.tab:hover {
     background: rgba(var(--hover-light));
 }
 
-.menu .gamma.tab.active { /* Corrected from .juice.tab.active */
+.menu .juice.tab.active {
     background: rgba(var(--dark), 0.1);
     color: rgba(var(--light));
     border: 0.1rem solid rgba(var(--border));
@@ -701,6 +701,12 @@
 
 .about-kirka:hover {
     background: #3f518d;
+}
+
+.about-kirka img {
+    width: 1.5rem;
+    height: 1.5rem;
+    object-fit: contain;
 }
 
 .about-kirkatools {

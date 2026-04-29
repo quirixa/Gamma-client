@@ -1,9 +1,11 @@
-# Gamma Client
+# Juice Client
 
-A light Electron client for Kirka.io. Join our [discord](https://discord.gg/FefKyX7VrF) for support and update notifications.
+A light Electron client for Kirka.io. Join our [discord](https://discord.gg/FjzAAdSjng) for support and update notifications.
 
 # Download
-- [Releases](https://github.com/quirixa/Gamma-client/releases)
+
+- [Website](https://juice.irrvlo.xyz)
+- [Releases](https://github.com/irrvlo/Gamma-client/releases)
 
 Windows, Linux and MacOS releases are available.
 # What features does this have?
@@ -29,6 +31,7 @@ Windows, Linux and MacOS releases are available.
 - Pack/Chest Auto Opener
 - Shift Clicking a username in Global Chat will open their profile
 - Map Images in Server List
+- Unofficial News in Lobby
 - Market Names
 - Custom List Price
 - Import/Export/Reset Settings
@@ -53,4 +56,12 @@ Windows, Linux and MacOS releases are available.
 
 # Is it safe?
 
-Gamma Client is 100% completely safe to use. Releases are built directly with the source code using Github Workflows. If you face any issues, join our [discord](https://discord.gg/FefKyX7VrF) to report bugs.
+Juice Client is 100% completely safe to use. Releases are built directly with the source code using Github Workflows (Thanks Error!). If you face any issues, join our [discord](https://discord.gg/FjzAAdSjng) to report bugs.
+
+## Credits
+
+- irrvlo
+- CarrySheriff for Chest/Pack opener, Map Images Repo, Market Names, and Custom List Price
+- AwesomeSam for a basic Resource Swapper
+- Error430 for optimizations
+- robertpakalns for various bug fixes, optimizations, and tweaks

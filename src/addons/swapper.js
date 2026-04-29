@@ -54,7 +54,8 @@ const initResourceSwapper = () => {
       if (fs.statSync(filePath).isDirectory()) allFilesSync(filePath);
       else {
         const useAssets = folder_regex.test(filePath);
-        if (!useAssets || filePath.toLowerCase().endsWith(".glb")) return;
+        // GLB filter removed - now includes .glb files
+        if (!useAssets) return;
 
         proxyUrls.forEach((proxy) => {
           const kirk = `*://${proxy}${filePath.replace(SWAP_FOLDER, "").replace(/\\/g, "/")}*`;

@@ -1,4 +1,3 @@
-```html
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -7,34 +6,34 @@
   <aside class="sidebar">
     <div class="search-input">
       <i class="fas fa-search"></i>
-      <input type="text" class="gamma search" placeholder="Search..." />
+      <input type="text" class="juice search" placeholder="Search..." />
     </div>
     <div class="sep"></div>
     <div class="tab-group">
-      <div data-tab="ui" class="gamma tab active">
+      <div data-tab="ui" class="juice tab active">
         <i class="fas fa-tv"></i>
         UI
       </div>
-      <div data-tab="game" class="gamma tab">
+      <div data-tab="game" class="juice tab">
         <i class="fas fa-gamepad"></i>
         Game
       </div>
     </div>
     <div class="sep"></div>
     <div class="tab-group">
-      <div data-tab="performance" class="gamma tab">
+      <div data-tab="performance" class="juice tab">
         <i class="fas fa-tachometer-alt"></i>
         Performance
       </div>
-      <div data-tab="client" class="gamma tab">
+      <div data-tab="client" class="juice tab">
         <i class="fas fa-cog"></i>
         Client
       </div>
-      <div data-tab="scripts" class="gamma tab">
+      <div data-tab="scripts" class="juice tab">
         <i class="fas fa-file-code"></i>
         Scripts
       </div>
-      <div data-tab="about" class="gamma tab">
+      <div data-tab="about" class="juice tab">
         <i class="fas fa-circle-info"></i>
         About
       </div>
@@ -49,7 +48,7 @@
     </div>
   </aside>
   <div class="content">
-    <div id="ui-options" class="gamma options active">
+    <div id="ui-options" class="juice options active">
       <div class="option-group">
         <div class="option">
           <span>Enable CSS</span>
@@ -152,9 +151,24 @@
           </div>
         </div>
       </div>
-      <!-- Badges and Gradient Names option group removed -->
+      <div class="option-group">
+        <div class="option">
+          <div class="left">
+            <span>Badges and Gradient Names</span>
+            <div class="description">Display user customizations</div>
+          </div>
+          <div class="checkbox">
+            <input
+              type="checkbox"
+              id="customizations"
+              data-setting="customizations"
+            />
+            <label for="customizations"></label>
+          </div>
+        </div>
+      </div>
     </div>
-    <div id="game-options" class="gamma options">
+    <div id="game-options" class="juice options">
       <div class="option-group">
         <div class="option">
           <span>Permanent Crosshair</span>
@@ -207,7 +221,7 @@
         </div>
       </div>
     </div>
-    <div id="performance-options" class="gamma options">
+    <div id="performance-options" class="juice options">
       <div class="option-group">
         <div class="option requires-restart">
           <span>Unlimited FPS</span>
@@ -257,8 +271,24 @@
         </div>
       </div>
     </div>
-    <div id="client-options" class="gamma options">
+    <div id="client-options" class="juice options">
       <div class="option-group">
+        <div class="option requires-restart">
+          <div class="left">
+            <span>Discord Activity</span>
+            <span class="description">
+              Display Juice Client as your Discord activity
+            </span>
+          </div>
+          <div class="checkbox">
+            <input
+              type="checkbox"
+              id="discord_rpc"
+              data-setting="discord_rpc"
+            />
+            <label for="discord_rpc"></label>
+          </div>
+        </div>
         <div class="option custom">
           <div class="left">
             <span>Menu Toggle Keybind</span>
@@ -266,18 +296,71 @@
               Customizable keybind to toggle the menu
             </span>
           </div>
-          <button class="gamma change-keybind"></button>
+          <button class="juice change-keybind"></button>
         </div>
       </div>
-      <!-- News option group (General, Promotional, Event, Alerts) removed -->
+      <div class="option-group">
+        <div class="option">
+          <div class="left requires-refresh">
+            <span>General News</span>
+            <span class="description">Juice-related news</span>
+          </div>
+          <div class="checkbox">
+            <input
+              type="checkbox"
+              id="general_news"
+              data-setting="general_news"
+            />
+            <label for="general_news"></label>
+          </div>
+        </div>
+        <div class="option">
+          <div class="left requires-refresh">
+            <span>Promotional News</span>
+            <span class="description"
+              >Live events (has a "LIVE" indicator)</span
+            >
+          </div>
+          <div class="checkbox">
+            <input
+              type="checkbox"
+              id="promotional_news"
+              data-setting="promotional_news"
+            />
+            <label for="promotional_news"></label>
+          </div>
+        </div>
+        <div class="option">
+          <div class="left requires-refresh">
+            <span>Event News</span>
+            <span class="description">Events that you can participate in</span>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" id="event_news" data-setting="event_news" />
+            <label for="event_news"></label>
+          </div>
+        </div>
+        <div class="option">
+          <div class="left requires-refresh">
+            <span>Alerts</span>
+            <span class="description"
+              >Important alerts mainly posted by Kirka Staff</span
+            >
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" id="alert_news" data-setting="alert_news" />
+            <label for="alert_news"></label>
+          </div>
+        </div>
+      </div>
       <div class="option-group">
         <div class="option">
           <span>Menu Theme</span>
           <select id="menu_theme" data-setting="menu_theme">
             <option value="dark">Dark</option>
             <option value="light">Light</option>
-            <option value="gamma">Gamma</option>
-            <option value="inverted-gamma">Inverted Gamma</option>
+            <option value="juice">Juice</option>
+            <option value="inverted-juice">Inverted Juice</option>
             <option value="nameless">Nameless</option>
             <option value="kirka-arena">Kirka Arena</option>
             <option value="kirka">Kirka</option>
@@ -304,28 +387,28 @@
       </div>
       <div class="option-group">
         <div class="option">
-          <button id="open-swapper-folder" class="gamma-button">
+          <button id="open-swapper-folder" class="juice-button">
             <span class="text">Open Swapper Folder</span>
             <div class="custom-border"></div>
           </button>
-          <button id="open-scripts-folder" class="gamma-button">
+          <button id="open-scripts-folder" class="juice-button">
             <span class="text">Open Scripts Folder</span>
             <div class="custom-border"></div>
           </button>
         </div>
         <div class="option">
-          <button id="import-settings" class="gamma-button">
+          <button id="import-settings" class="juice-button">
             <span class="text">Import Settings</span>
             <div class="custom-border"></div>
           </button>
-          <button id="export-settings" class="gamma-button">
+          <button id="export-settings" class="juice-button">
             <span class="text">Export Settings</span>
             <div class="custom-border"></div>
           </button>
         </div>
         <div class="option">
-          <button id="reset-gamma-settings" class="gamma-button large">
-            <span class="text">Reset Gamma Client Settings</span>
+          <button id="reset-juice-settings" class="juice-button large">
+            <span class="text">Reset Juice Client Settings</span>
             <span class="description"> This action cannot be undone</span>
             <div class="custom-border"></div>
           </button>
@@ -333,7 +416,7 @@
         <div class="option">
           <button
             id="remote-to-static-links"
-            class="gamma-button large requires-refresh"
+            class="juice-button large requires-refresh"
           >
             <span class="test">Replace Remote Links with Static Links</span>
             <span class="description">
@@ -345,7 +428,7 @@
         </div>
       </div>
     </div>
-    <div id="scripts-options" class="gamma options">
+    <div id="scripts-options" class="juice options">
       <div class="option-group">
         <div class="option">
           <div class="left">
@@ -402,23 +485,24 @@
         </div>
       </div>
     </div>
-    <div id="about-client" class="gamma options">
+    <div id="about-client" class="juice options">
       <div class="option-group">
         <div class="about-top header">
+          <img src="https://juice.irrvlo.xyz/juice.png" />
           <div class="about-info">
-            <span class="title">Gamma Client</span>
+            <span class="title">Juice Client</span>
             <div class="about-more">
               <div>
                 <span class="ver"></span>
-                <span class="author">by quirixa</span>
+                <span class="author">by irrvlo</span>
               </div>
               <div class="about-buttons">
-                <a href="https://kirka.io/profile/6BAHNT" class="about-kirka">
+                <a href="https://kirka.io/profile/H8N3U4" class="about-kirka">
                   <img src="https://kirka.io/favicon.ico" />
                   <div class="custom-border"></div>
                 </a>
                 <a
-                  href="https://discord.gg/FefKyX7VrF"
+                  href="https://discord.gg/FjzAAdSjng"
                   target="_blank"
                   class="about-discord"
                 >
@@ -426,11 +510,50 @@
                   <div class="custom-border"></div>
                 </a>
                 <a
-                  href="https://github.com/quirixa/gamma-client"
+                  href="https://github.com/irrvlo/Gamma-client"
                   target="_blank"
                   class="about-github"
                 >
                   <i class="fab fa-github"></i>
+                  <div class="custom-border"></div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="option-group">
+        <div class="about-top compact">
+          <img src="https://juice.irrvlo.xyz/irrvlo_k.png" />
+          <div class="about-info compact">
+            <span class="title">Kirka Tools</span>
+            <div class="about-more">
+              <div></div>
+              <div class="about-buttons">
+                <a href="https://kirka.irrvlo.xyz" class="about-kirkatools alt">
+                  <i class="fas fa-arrow-up-right-from-square"></i>
+                  <p>Check it out!</p>
+                  <div class="custom-border"></div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="option-group">
+        <div class="about-top compact">
+          <img src="https://juice.irrvlo.xyz/bubbles.png" />
+          <div class="about-info compact">
+            <span class="title">Patch Notes</span>
+            <div class="about-more">
+              <div></div>
+              <div class="about-buttons">
+                <a
+                  href="https://juice.irrvlo.xyz/patch-notes"
+                  class="about-juice alt"
+                >
+                  <i class="fas fa-arrow-up-right-from-square"></i>
+                  <p>View</p>
                   <div class="custom-border"></div>
                 </a>
               </div>
@@ -455,4 +578,3 @@
     </div>
   </div>
 </div>
-```

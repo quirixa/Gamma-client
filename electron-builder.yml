@@ -1,5 +1,5 @@
-appId: xyz..gamma # Changed from xyz.irrvlo.juice
-productName: Gamma Client # Changed from Juice Client
+appId: xyz.irrvlo.juice
+productName: Juice Client
 directories:
   output: "build"
 npmRebuild: false
@@ -24,6 +24,6 @@ linux:
   artifactName: "${name}-${version}-linux-${arch}.${ext}"
 publish:
   - provider: github
-    owner: quirixa
-    repo: gamma-client
+    owner: irrvlo
+    repo: Gamma-client
     releaseType: draft
