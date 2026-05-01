@@ -1,11 +1,10 @@
-# Juice Client
+# quirixa Client
 
 A light Electron client for Kirka.io. Join our [discord](https://discord.gg/FjzAAdSjng) for support and update notifications.
 
 # Download
 
-- [Website](https://juice.irrvlo.xyz)
-- [Releases](https://github.com/irrvlo/Gamma-client/releases)
+- [Releases](https://github.com/quirixa/Gamma-client/releases)
 
 Windows, Linux and MacOS releases are available.
 # What features does this have?
@@ -56,11 +55,11 @@ Windows, Linux and MacOS releases are available.
 
 # Is it safe?
 
-Juice Client is 100% completely safe to use. Releases are built directly with the source code using Github Workflows (Thanks Error!). If you face any issues, join our [discord](https://discord.gg/FjzAAdSjng) to report bugs.
+quirixa Client is 100% completely safe to use. Releases are built directly with the source code using Github Workflows (Thanks Error!). If you face any issues, join our [discord](https://discord.gg/FjzAAdSjng) to report bugs.
 
 ## Credits
 
-- irrvlo
+- quirixa
 - CarrySheriff for Chest/Pack opener, Map Images Repo, Market Names, and Custom List Price
 - AwesomeSam for a basic Resource Swapper
 - Error430 for optimizations

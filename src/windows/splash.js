@@ -1,15 +1,15 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
-const { autoUpdater } = require("electron-updater");
+// const { autoUpdater } = require("electron-updater"); // Auto-updater disabled
 const { initGame } = require("./game");
 const path = require("path");
 
-autoUpdater.autoDownload = true;
-
-autoUpdater.setFeedURL({
-  provider: "github",
-  owner: "irrvlo",
-  repo: "juice-client",
-});
+// Auto-updater configuration disabled
+// autoUpdater.autoDownload = true;
+// autoUpdater.setFeedURL({
+//   provider: "github",
+//   owner: "quirixa",
+//   repo: "Gamma-client",
+// });
 
 let splashWindow;
 
@@ -23,7 +23,6 @@ const createWindow = () => {
     transparent: true,
     fullscreenable: false,
     resizable: false,
-    fullscreenable: false,
     webPreferences: {
       preload: path.join(__dirname, "../preload/splash.js"),
     },
@@ -32,7 +31,8 @@ const createWindow = () => {
   splashWindow.loadFile(path.join(__dirname, "../assets/html/splash.html"));
   splashWindow.once("ready-to-show", () => {
     splashWindow.show();
-    app.isPackaged ? checkForUpdates() : handleClose();
+    // Directly launch game without checking for updates
+    handleClose();
   });
 
   splashWindow.on("closed", () => {
@@ -41,29 +41,14 @@ const createWindow = () => {
   });
 };
 
-ipcMain.on("quit-and-install", () =>
-  setTimeout(() => autoUpdater.quitAndInstall(), 5000)
-);
+// IPC listener disabled
+// ipcMain.on("quit-and-install", () =>
+//   setTimeout(() => autoUpdater.quitAndInstall(), 5000)
+// );
 
+// Update checker - now just launches the game immediately
 const checkForUpdates = () => {
-  autoUpdater.on("update-available", () =>
-    splashWindow.webContents.send("update-available")
-  );
-  autoUpdater.on("update-not-available", () => {
-    splashWindow.webContents.send("update-not-available");
-    handleClose();
-  });
-  autoUpdater.on("update-downloaded", () =>
-    splashWindow.webContents.send("update-downloaded")
-  );
-  autoUpdater.on("download-progress", (progress) =>
-    splashWindow.webContents.send("download-progress", progress)
-  );
-  autoUpdater.on("error", ({ message }) => {
-    splashWindow.webContents.send("update-error", message);
-    handleClose();
-  });
-  autoUpdater.checkForUpdates().catch(handleClose);
+  handleClose();
 };
 
 const handleClose = () =>

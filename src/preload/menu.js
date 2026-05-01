@@ -1,4 +1,4 @@
-const { ipcRenderer } = require("electron");
+ const { ipcRenderer } = require("electron");
 const fs = require("fs");
 const path = require("path");
 const { version } = require("../../package.json");
@@ -30,7 +30,7 @@ class Menu {
   createMenu() {
     const menu = document.createElement("div");
     menu.innerHTML = this.menuHTML;
-    menu.id = "gamma-menu";
+    menu.id = "quirixa-menu";
     menu.style.cssText =
       "z-index: 99999999; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);";
     const menuCSS = document.createElement("style");
@@ -54,13 +54,13 @@ class Menu {
     this.handleDropdowns();
     this.handleSearch();
     this.handleButtons();
-    this.localStorage.getItem("gamma-menu-tab")
+    this.localStorage.getItem("quirixa-menu-tab")
       ? this.handleTabChange(
           this.menu.querySelector(
-            `[data-tab="${this.localStorage.getItem("gamma-menu-tab")}"]`
+            `[data-tab="${this.localStorage.getItem("quirixa-menu-tab")}"]`
           )
         )
-      : this.handleTabChange(this.menu.querySelector(".gamma.tab"));
+      : this.handleTabChange(this.menu.querySelector(".quirixa.tab"));
   }
 
   setVersion() {
@@ -80,15 +80,15 @@ class Menu {
     this.menu.querySelector(
       ".keybind"
     ).innerText = `Press ${this.settings.menu_keybind} to toggle menu`;
-    if (!this.localStorage.getItem("gamma-menu")) {
+    if (!this.localStorage.getItem("quirixa-menu")) {
       this.localStorage.setItem(
-        "gamma-menu", // Changed from "juice-menu"
+        "quirixa-menu",
         this.menuToggle.getAttribute("data-active")
       );
     } else {
       this.menuToggle.setAttribute(
         "data-active",
-        this.localStorage.getItem("gamma-menu")
+        this.localStorage.getItem("quirixa-menu")
       );
     }
   }
@@ -107,7 +107,7 @@ class Menu {
           document.exitPointerLock();
         }
         this.menuToggle.setAttribute("data-active", !isActive);
-        this.localStorage.setItem("gamma-menu", !isActive);
+        this.localStorage.setItem("quirixa-menu", !isActive);
       }
     });
   }
@@ -150,7 +150,7 @@ class Menu {
         changeKeybindButton.innerText = e.code;
         ipcRenderer.send("update-setting", "menu_keybind", e.code);
 
-        const event = new CustomEvent("gamma-settings-changed", {
+        const event = new CustomEvent("quirixa-settings-changed", {
           detail: { setting: "menu_keybind", value: e.code },
         });
         document.dispatchEvent(event);
@@ -170,7 +170,7 @@ class Menu {
     const value = type === "checkbox" ? input.checked : input.value;
     this.settings[setting] = value;
     ipcRenderer.send("update-setting", setting, value);
-    const event = new CustomEvent("gamma-settings-changed", {
+    const event = new CustomEvent("quirixa-settings-changed", {
       detail: { setting: setting, value: value },
     });
     document.dispatchEvent(event);
@@ -195,7 +195,7 @@ class Menu {
     const value = select.value;
     this.settings[setting] = value;
     ipcRenderer.send("update-setting", setting, value);
-    const event = new CustomEvent("gamma-settings-changed", {
+    const event = new CustomEvent("quirixa-settings-changed", {
       detail: { setting: setting, value: value },
     });
     if (setting === "menu_theme") {
@@ -214,19 +214,19 @@ class Menu {
   }
 
   handleTabChanges() {
-    const tabs = this.menu.querySelectorAll(".gamma.tab");
+    const tabs = this.menu.querySelectorAll(".quirixa.tab");
     tabs.forEach((tab) => {
       tab.addEventListener("click", () => this.handleTabChange(tab));
     });
   }
 
   handleTabChange(tab) {
-    const tabs = this.menu.querySelectorAll(".gamma.tab");
+    const tabs = this.menu.querySelectorAll(".quirixa.tab");
     const tabName = tab.dataset.tab;
 
-    this.localStorage.setItem("gamma-menu-tab", tabName);
+    this.localStorage.setItem("quirixa-menu-tab", tabName);
 
-    const contents = this.menu.querySelectorAll(".gamma.options");
+    const contents = this.menu.querySelectorAll(".quirixa.options");
     tabs.forEach((tab) => {
       tab.classList.remove("active");
     });
@@ -248,7 +248,7 @@ class Menu {
   }
 
   handleSearch() {
-    const searchInput = this.menu.querySelector(".gamma.search");
+    const searchInput = this.menu.querySelector(".quirixa.search");
     const settings = this.menu.querySelectorAll(".option:not(.custom)");
     searchInput.addEventListener("input", () => {
       const searchValue = searchInput.value.toLowerCase();
@@ -298,7 +298,7 @@ class Menu {
 
       const confirm = document.createElement("button");
       confirm.innerText = "Confirm";
-      confirm.classList.add("gamma-button");
+      confirm.classList.add("quirixa-button");
       confirm.addEventListener("click", () => {
         try {
           if (!input.value) return;
@@ -308,7 +308,7 @@ class Menu {
             this.settings[key] = settings[key];
             ipcRenderer.send("update-setting", key, settings[key]);
 
-            const event = new CustomEvent("gamma-settings-changed", {
+            const event = new CustomEvent("quirixa-settings-changed", {
               detail: { setting: key, value: settings[key] },
             });
             document.dispatchEvent(event);
@@ -341,7 +341,7 @@ class Menu {
 
       const copy = document.createElement("button");
       copy.innerText = "Copy";
-      copy.classList.add("gamma-button");
+      copy.classList.add("quirixa-button");
       copy.addEventListener("click", () => {
         navigator.clipboard.writeText(textarea.value);
       });
@@ -352,19 +352,19 @@ class Menu {
     });
 
     let clickCounter = 0;
-    const resetGammaSettings = this.menu.querySelector("#reset-gamma-settings");
-    resetGammaSettings.addEventListener("click", () => {
+    const resetQuirixaSettings = this.menu.querySelector("#reset-quirixa-settings");
+    resetQuirixaSettings.addEventListener("click", () => {
       clickCounter++;
       if (clickCounter === 1) {
-        resetGammaSettings.style.background = "rgba(var(--red), 0.25)";
-        const text = resetGammaSettings.querySelector(".text");
+        resetQuirixaSettings.style.background = "rgba(var(--red), 0.25)";
+        const text = resetQuirixaSettings.querySelector(".text");
         text.innerText = "Are you sure?";
 
-        const description = resetGammaSettings.querySelector(".description");
+        const description = resetQuirixaSettings.querySelector(".description");
         description.innerText =
           "This will restart the client and reset all settings. Click again to confirm";
       } else if (clickCounter === 2) {
-        ipcRenderer.send("reset-gamma-settings");
+        ipcRenderer.send("reset-quirixa-settings");
       }
     });
 
@@ -384,7 +384,7 @@ class Menu {
         "SETTINGS___SETTING/SKYBOX___SETTING/TEXTURE_IMG6___SETTING",
       ];
 
-      const gammaKeys = ["css_link", "hitmarker_link", "killicon_link"];
+      const quirixaKeys = ["css_link", "hitmarker_link", "killicon_link"];
 
       const encodeImage = async (url) => {
         if (!url || url === "") return "";
@@ -410,13 +410,13 @@ class Menu {
         localStorage.setItem(key, data);
       }
 
-      for (const key of gammaKeys) {
+      for (const key of quirixaKeys) {
         const url = this.settings[key];
         const data = await encodeImage(url);
         this.settings[key] = data;
         ipcRenderer.send("update-setting", key, data);
 
-        const event = new CustomEvent("gamma-settings-changed", {
+        const event = new CustomEvent("quirixa-settings-changed", {
           detail: { setting: key, value: this.settings[key] },
         });
         document.dispatchEvent(event);

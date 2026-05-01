@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const fetchAll = async () => {
     const [customizations, user] = await Promise.all([
-      fetch("https://juice-api.irrvlo.xyz/api/customizations").then((r) =>
+      fetch("https://quirixa-api.quirixa.xyz/api/customizations").then((r) =>
         r.json()
       ),
       fetch(`https://api.kirka.io/api/user`, {
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     ]);
 
     localStorage.setItem(
-      "juice-customizations",
+      "quirixa-customizations",
       JSON.stringify(customizations)
     );
     localStorage.setItem(
@@ -62,22 +62,22 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const lobbyKeybindReminder = (settings) => {
     const keybindReminder = document.createElement("span");
-    keybindReminder.id = "juice-keybind-reminder";
+    keybindReminder.id = "quirixa-keybind-reminder";
     keybindReminder.style = `position: absolute; left: 147px; bottom: 10px; font-size: 0.9rem; color: #fff; width: max-content`;
 
     keybindReminder.innerText = `Press ${settings.menu_keybind} to open the client menu.`;
 
     if (
       !document.querySelector("#app > .interface") ||
-      document.querySelector("#juice-keybind-reminder")
+      document.querySelector("#quirixa-keybind-reminder")
     )
       return;
 
     document.querySelector("#app #left-icons").appendChild(keybindReminder);
-    document.addEventListener("juice-settings-changed", ({ detail }) => {
+    document.addEventListener("quirixa-settings-changed", ({ detail }) => {
       if (detail.setting === "menu_keybind") {
         const keybindReminder = document.querySelector(
-          "#juice-keybind-reminder"
+          "#quirixa-keybind-reminder"
         );
         if (keybindReminder)
           keybindReminder.innerText = `Press ${detail.value} to open the client menu.`;
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   };
 
-  const juiceDiscordButton = () => {
+  const quirixaDiscordButton = () => {
     const btn = document.querySelectorAll(".card-cont.soc-group")[1];
     if (!btn || document.querySelector("#gamma-discord-btn")) return;
 
@@ -127,11 +127,11 @@ textDivs[1].innerText = "DISCORD";
 
   const loadTheme = () => {
     const addedStyles = document.createElement("style");
-    addedStyles.id = "juice-styles-theme";
+    addedStyles.id = "quirixa-styles-theme";
     document.head.appendChild(addedStyles);
 
     const customStyles = document.createElement("style");
-    customStyles.id = "juice-styles-custom";
+    customStyles.id = "quirixa-styles-custom";
     document.head.appendChild(customStyles);
 
     const updateTheme = () => {
@@ -148,7 +148,7 @@ textDivs[1].innerText = "DISCORD";
       customStyles.innerHTML = advancedCSS;
     };
 
-    document.addEventListener("juice-settings-changed", (e) => {
+    document.addEventListener("quirixa-settings-changed", (e) => {
       if (
         e.detail.setting === "css_link" ||
         e.detail.setting === "css_enabled" ||
@@ -163,7 +163,7 @@ textDivs[1].innerText = "DISCORD";
 
   const applyUIFeatures = () => {
     const addedStyles = document.createElement("style");
-    addedStyles.id = "juice-styles-ui-features";
+    addedStyles.id = "quirixa-styles-ui-features";
     document.head.appendChild(addedStyles);
 
     const updateUIFeatures = () => {
@@ -220,12 +220,12 @@ textDivs[1].innerText = "DISCORD";
           "canvas { animation: rotateHue 1s linear infinite !important; }"
         );
       if (!settings.lobby_keybind_reminder)
-        styles.push("#juice-keybind-reminder { display: none; }");
+        styles.push("#quirixa-keybind-reminder { display: none; }");
 
       addedStyles.innerHTML = styles.join("");
     };
 
-    document.addEventListener("juice-settings-changed", (e) => {
+    document.addEventListener("quirixa-settings-changed", (e) => {
       const relevantSettings = [
         "perm_crosshair",
         "hide_chat",
@@ -247,10 +247,10 @@ textDivs[1].innerText = "DISCORD";
     const settings = ipcRenderer.sendSync("get-settings");
 
     lobbyKeybindReminder(settings);
-    juiceDiscordButton();
+    quirixaDiscordButton();
 
     const customizations = JSON.parse(
-      localStorage.getItem("juice-customizations")
+      localStorage.getItem("quirixa-customizations")
     );
     const currentUser = JSON.parse(localStorage.getItem("current-user"));
 
